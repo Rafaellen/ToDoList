@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Tarefa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Editar Tarefa</h1>
+        <form action="{{ url_for('editar_tarefa', id=tarefa.id) }}" method="post">
+            <div class="form-group">
+                <label for="tituloForm">Título:</label>
+                <input type="text" id="tituloForm" name="tituloForm" class="form-control" value="{{ tarefa.titulo }}" required>
+            </div>
+            <div class="form-group">
+                <label for="descricaoForm">Descrição:</label>
+                <textarea id="descricaoForm" name="descricaoForm" class="form-control" required>{{ tarefa.descricao }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="statusForm">Status:</label>
+                <select id="statusForm" name="statusForm" class="form-control" required>
+                    <option value="PENDENTE" {% if tarefa.status == 'PENDENTE' %}selected{% endif %}>Pendente</option>
+                    <option value="EM_ANDAMENTO" {% if tarefa.status == 'EM_ANDAMENTO' %}selected{% endif %}>Em Andamento</option>
+                    <option value="CONCLUIDA" {% if tarefa.status == 'CONCLUIDA' %}selected{% endif %}>Concluída</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        </form>
+    </div>
+</body>
+</html>
