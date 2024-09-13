@@ -10,6 +10,16 @@
     <div class="container mt-5">
         <h1>Lista de Tarefas</h1>
 
+        <!-- Links de autenticação -->
+        <div class="mb-3">
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('logout') }}" class="btn btn-warning">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn btn-primary">Login</a>
+                <a href="{{ url_for('register') }}" class="btn btn-success">Register</a>
+            {% endif %}
+        </div>
+
         <!-- Formulário de filtro -->
         <form class="mb-3" method="get" action="{{ url_for('all_tarefas') }}">
             <div class="row">
@@ -34,7 +44,7 @@
                     <th>Título</th>
                     <th>Descrição</th>
                     <th>Status</th>
-                    <th>Ações</th>
+                    <th>Responsável</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,6 +54,7 @@
                     <td>{{ tarefa.titulo }}</td>
                     <td>{{ tarefa.descricao }}</td>
                     <td>{{ tarefa.status.value }}</td>
+                    <td>{{ tarefa.responsavel.nome_usuario }}</td>
                     <td>
                         <a href="{{ url_for('editar_tarefa', id=tarefa.id) }}" class="btn btn-primary btn-sm">Editar</a>
                         <a href="{{ url_for('confirmar_remocao', id=tarefa.id) }}" class="btn btn-danger btn-sm">Remover</a>
