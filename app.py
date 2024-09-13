@@ -59,11 +59,6 @@ def logout():
     return redirect(url_for('login'))
 
 
-@app.route('/')
-def home():
-    return render_template('home.html')
-
-
 @app.route('/alltarefas')
 @login_required
 def all_tarefas():
