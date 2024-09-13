@@ -9,6 +9,17 @@
 <body>
     <div class="container mt-5">
         <h1>Registrar</h1>
+        
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                <div class="alert alert-warning">
+                    {% for category, message in messages %}
+                        <div>{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
         <form method="POST" action="{{ url_for('registrar') }}">
             <div class="mb-3">
                 <label for="nome_usuario" class="form-label">Nome de Usuário</label>
